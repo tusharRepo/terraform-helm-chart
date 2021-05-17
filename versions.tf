@@ -8,6 +8,10 @@ terraform {
       source  = "hashicorp/kubernetes"
       version = "~> 2.0.1"
     }
+    local = {
+      source  = "hashicorp/local"
+      version = "2.0.0"
+    }
   }
   required_version = "~> 0.14"
 }
