@@ -1,7 +1,7 @@
 resource "helm_release" "charts" {
   count             = local.helm_chart_count
   
-  name              = var.helm_charts[count.index].name
+  name              = lookup(var.helm_charts[count.index], "name", var.helm_charts[count.index].chart)
   repository        = var.helm_charts[count.index].repository
   chart             = var.helm_charts[count.index].chart
 

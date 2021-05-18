@@ -2,11 +2,7 @@ locals {
 
   helm_chart_count = length(var.helm_charts)
 
-  helm_charts_defaults = {
-    name              = ""
-    repository        = ""
-    chart             = ""
-    
+  helm_charts_defaults = {    
     version           = null
     namespace         = null
     timeout           = null
