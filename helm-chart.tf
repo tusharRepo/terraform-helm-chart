@@ -11,7 +11,16 @@ resource "helm_release" "charts" {
   create_namespace  = lookup(var.helm_charts[count.index], "create_namespace", local.helm_charts_defaults.create_namespace)
 
   values = [
-    for value in var.helm_charts[count.index].values: 
+    for value in lookup(var.helm_charts[count.index], "values", local.helm_charts_defaults.values): 
         "${file("${value}")}"
   ]
+
+  dynamic "set" {
+    for_each = lookup(var.helm_charts[count.index], "set", local.helm_charts_defaults.set)
+    content {
+      name  = set.value.name
+      value = set.value.value
+      type  = lookup(set.value, "type", "auto")
+    }
+  }
 }

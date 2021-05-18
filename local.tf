@@ -7,7 +7,8 @@ locals {
     namespace         = null
     timeout           = null
     create_namespace  = true
-    values            = null
+    values            = []
+    set               = []
   }
 
 }
